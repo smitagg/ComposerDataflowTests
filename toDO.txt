@@ -1,0 +1,52 @@
+https://cloud.google.com/composer/docs/composer-2/run-apache-airflow-dag#clean-up
+
+
+https://cloud.google.com/composer/pricing
+
+https://cloud.google.com/composer/pricing?hl=en#sku-composer-2
+
+with models.DAG(
+        'bigquery_dag',
+        schedule_interval = None ,
+        template_searchpath = ['/home/airflow/gcs/data/repo/queries/'],
+        default_args = default_dag_args
+        ) as dag:
+
+    t1_clean_repo = bash_operator.BashOperator(
+        task_id = 'clean_repo',
+        bash_command = 'rm -rf /home/airflow/gcs/data/repo'
+    )
+
+    clone_command = """
+        gcloud source repos clone repo --project=project_id
+        cp -R repo /home/airflow/gcs/data
+    """
+
+    t2_clone_repo = bash_operator.BashOperator(
+        task_id='clone_repo',
+        bash_command=clone_command
+        )
+
+    t3_query = bigquery_operator.BigQueryOperator(
+        task_id='query',
+        sql= 'query.sql',
+        use_legacy_sql = False,
+        bigquery_conn_id='conn_id'
+    )
+	
+	
+	
+	
+
+
+
+create_external_table = BigQueryCreateExternalTableOperator(
+    task_id="create_external_table",
+    destination_project_dataset_table=f"{DATASET_NAME}.external_table",
+    bucket=DATA_SAMPLE_GCS_BUCKET_NAME,
+    source_objects=[DATA_SAMPLE_GCS_OBJECT_NAME],
+    schema_fields=[
+        {"name": "emp_name", "type": "STRING", "mode": "REQUIRED"},
+        {"name": "salary", "type": "INTEGER", "mode": "NULLABLE"},
+    ],
+)
