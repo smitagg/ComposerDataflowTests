@@ -57,3 +57,28 @@ create_external_table = BigQueryCreateExternalTableOperator(
 )
 
 https://github.com/GoogleCloudPlatform/python-docs-samples/blob/c311bc36ccefc7629a4008a780d04e308ac5447d/composer/workflows/bq_notify.py#L98-L119
+
+
+   start_python_job_async = DataflowCreatePythonJobOperator(
+        task_id="start-python-job-async",
+        py_file=GCS_PYTHON,
+        py_options=[],
+        job_name='{{task.task_id}}',
+        options={
+            'output': GCS_OUTPUT,
+        },
+        py_requirements=['apache-beam[gcp]==2.25.0'],
+        py_interpreter='python3',
+        py_system_site_packages=False,
+        location='europe-west3',
+        wait_until_finished=False,
+    )
+
+    wait_for_python_job_async_done = DataflowJobStatusSensor(
+        task_id="wait-for-python-job-async-done",
+        job_id="{{task_instance.xcom_pull('start-python-job-async')['job_id']}}",
+        expected_statuses={DataflowJobStatus.JOB_STATE_DONE},
+        location='europe-west3',
+    )
+
+    start_python_job_async >> wait_for_python_job_async_done
