@@ -5,6 +5,11 @@ https://cloud.google.com/composer/pricing
 
 https://cloud.google.com/composer/pricing?hl=en#sku-composer-2
 
+
+https://github.com/apache/beam/blob/master/sdks/python/apache_beam/examples/wordcount.py
+
+pip install apache-airflow-providers-google==8.3.0
+
 with models.DAG(
         'bigquery_dag',
         schedule_interval = None ,
@@ -50,3 +55,5 @@ create_external_table = BigQueryCreateExternalTableOperator(
         {"name": "salary", "type": "INTEGER", "mode": "NULLABLE"},
     ],
 )
+
+https://github.com/GoogleCloudPlatform/python-docs-samples/blob/c311bc36ccefc7629a4008a780d04e308ac5447d/composer/workflows/bq_notify.py#L98-L119
