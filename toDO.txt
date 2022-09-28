@@ -82,3 +82,19 @@ https://github.com/GoogleCloudPlatform/python-docs-samples/blob/c311bc36ccefc762
     )
 
     start_python_job_async >> wait_for_python_job_async_done
+	
+	
+	
+	
+	https://airflow.apache.org/docs/apache-airflow-providers-apache-beam/stable/operators.html#python-pipelines-with-dataflowrunner
+
+https://cloud.google.com/composer/docs/release-notes
+
+https://airflow.apache.org/docs/apache-airflow-providers-google/stable/index.html
+
+https://airflow.apache.org/docs/apache-airflow-providers-apache-beam/stable/index.html
+https://airflow.apache.org/docs/apache-airflow-providers-apache-beam/stable/index.html#downloading-official-packages
+https://airflow.apache.org/docs/apache-airflow-providers-google/stable/index.html#downloading-official-packages
+
+
+https://airflow.apache.org/docs/apache-airflow-providers-apache-beam/stable/index.html#id6
