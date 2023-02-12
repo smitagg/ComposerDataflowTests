@@ -9,19 +9,13 @@ jobs:
 
       - name: Set output
         id: vars
-        run: echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
+        run: echo ::set-output name=branchName::${GITHUB_REF#refs/*/}
 
       - name: Check output
         run: |
-              echo ${{ steps.vars.outputs.short_ref }}
-              echo endsWith(${GITHUB_REF#refs/*/})
+              echo ${{ steps.vars.outputs.branchName }}
+              echo "RELEASE_BRANCH=${{ steps.vars.outputs.short_ref }}" >> $GITHUB_ENV         
         
+      - name: Set env to DEV
+        run: echo $GITHUB_ENV
 
-      - name: Set env to staging
-        if: endsWith(github.ref, 'DEV')
-        run: |
-          echo "ENVIRONMENT=staging" >> $GITHUB_ENV
-      - name: Set env to production
-        if: endsWith(github.ref, '/master')
-        run: |
-         echo "ENVIRONMENT=production" >> $GITHUB_ENV
