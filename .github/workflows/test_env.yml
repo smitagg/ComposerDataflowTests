@@ -1,0 +1,24 @@
+## env file
+name: test-environment
+on: workflow_dispatch
+jobs:
+  example:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set output
+        id: vars
+        run: echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
+
+      - name: Check output
+        run: echo ${{ steps.vars.outputs.short_ref }}
+
+      - name: Set env to staging
+        if: endsWith(github.ref, '/dev')
+        run: |
+          echo "ENVIRONMENT=staging" >> $GITHUB_ENV
+      - name: Set env to production
+        if: endsWith(github.ref, '/master')
+        run: |
+         echo "ENVIRONMENT=production" >> $GITHUB_ENV
