@@ -15,7 +15,16 @@ jobs:
         run: |
               echo ${{ steps.vars.outputs.branchName }}
               echo "RELEASE_BRANCH=${{ steps.vars.outputs.short_ref }}" >> $GITHUB_ENV         
+ 
+      - name: Set env to staging
+        if: endsWith(github.ref, 'DEV')
+        run: |
+          echo "ENVIRONMENT=staging" >> $GITHUB_ENV
+      - name: Set env to production
+        if: endsWith(github.ref, '/master')
+        run: |
+         echo "ENVIRONMENT=production" >> $GITHUB_ENV
         
       - name: Set env to DEV
         run: echo $GITHUB_ENV
-
+       
