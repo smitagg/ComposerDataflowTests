@@ -30,4 +30,4 @@ jobs:
           submodules: recursive         
 
       - name: Check output
-        run: ls -ltr
+        run: ls -ltr TTT
