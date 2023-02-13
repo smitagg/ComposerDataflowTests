@@ -25,7 +25,7 @@ jobs:
          
       - uses: actions/checkout@master
         with:
-          repository: smitagg/test1
+          repository: smitagg/privRepo
           path: ./TTT
           submodules: recursive         
 
