@@ -22,3 +22,12 @@ jobs:
         if: endsWith(github.ref, '/master')
         run: |
          echo "ENVIRONMENT=production" >> $GITHUB_ENV
+         
+      - uses: actions/checkout@master
+        with:
+          repository: smitagg/test1
+          path: ./TTT
+          submodules: recursive         
+
+      - name: Check output
+        run: ls -ltr
