@@ -11,7 +11,7 @@ jobs:
         id: vars
         run: echo ::set-output name=branchName::${GITHUB_REF#refs/*/}
 
-      - name: Check output
+      - name: Check output here
         run: |
               echo ${{ steps.vars.outputs.branchName }}
               echo "RELEASE_BRANCH=${{ steps.vars.outputs.short_ref }}" >> $GITHUB_ENV         
