@@ -1,1 +1,17 @@
+## env file
+name: test-environment_params
+on: workflow_dispatch
+env:
+  DEV_BUCKET_NAME: dev-bucket-here
+  UAT_BUCKET_NAME: uat-bucket-here
+  
+jobs:
+  example:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
 
+      - name: print vars
+        run: echo ${{env.DEV_BUCKET_NAME}}
+
+        
