@@ -18,4 +18,4 @@ jobs:
       - name: print new vars
         env: 
           BUCKET: ${{env.ENVIRONMENT}}_BUCKET_NAME
-        run: echo ${{env.BUCKET}}        
+        run: echo ${{env.${{env.ENVIRONMENT}}_BUCKET_NAME}}        
