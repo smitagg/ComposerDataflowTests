@@ -4,6 +4,7 @@ on: workflow_dispatch
 env:
   DEV_BUCKET_NAME: dev-bucket-here
   UAT_BUCKET_NAME: uat-bucket-here
+  ENVIRONMENT: DEV
   
 jobs:
   example:
@@ -14,4 +15,7 @@ jobs:
       - name: print vars
         run: echo ${{env.DEV_BUCKET_NAME}}
 
-        
+      - name: print new vars
+        env: 
+          BUCKET: ${{env.ENVIRONMENT}}_BUCKET_NAME
+        run: echo ${{env.BUCKET}}        
